@@ -1,7 +1,7 @@
 {
 	"name": "jsontoelixir",
 	"displayName": "JsonToElixir",
-	"description": "Convert a JSON file to an Elixir List or OK tuple",
+	"description": "Converts an open JSON file to an Elixir list",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.49.0"
@@ -10,16 +10,33 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:jsontoelixir.helloWorld"
+		"onCommand:jsontoelixir.convert",
+		"onCommand:jsontoelixir.convertWithOk"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "jsontoelixir.helloWorld",
-				"title": "Hello World"
+				"command": "jsontoelixir.convert",
+				"title": "JSON To Elixir: Convert"
+			},
+			{
+				"command": "jsontoelixir.convertWithOk",
+				"title": "JSON To Elixir: Convert - Add :ok tuple"
 			}
-		]
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "jsontoelixir.convert",
+					"when": "editorLangId == json"
+				},
+				{
+					"command": "jsontoelixir.convertWithOk",
+					"when": "editorLangId == json"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
