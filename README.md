@@ -2,10 +2,14 @@
 
 Converts a JSON structure to an Elixir list optionally within an OK tuple.
 
+- Works best with a formatted JSON file.
+
 ## Commands
 
-1. **JSON To Elixir: Convert** -> Converts to a list.
-2. **JSON To Elixir: Convert** -> Converts and adds the list within an `:ok` tuple.
+In the _Command Palette_, type **JSON** and choose a command:
+
+1. `JSON To Elixir: Convert` -> To convert JSON to a list.
+2. `JSON To Elixir: Convert` -> To convert JSON and add the list within an `:ok` tuple.
 
 ## Requirements
 
@@ -17,16 +21,13 @@ This extension has no extension settings.
 
 ## Known Issues
 
-- Expects a formatted JSON file - "{" should be on its own line or at least with a space after and ":" separator needs a space after.
-- Find and replace is crude for now, if you have "{", "null", or ": " within a string it will get replaced also.
+- If you have "null" within a string it will get replaced with "nil" also.
 
 ## Release Notes
 
-Versions noted below.
+- Fixed "command 'jsontoelixir:convertWithOk' not found" error.
 
-### 1.0.0
-
-Initial release of JSON To Elixir. 09/27/2020.
+See past versions in change log.
 
 ## Source
 
