@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   let disposableOk = vscode.commands.registerCommand(
-    "jsontoelixir.convertWihtOk",
+    "jsontoelixir.convertWithOk",
     () => {
       // The code you place here will be executed every time your command is executed
       convertToElixir(true);

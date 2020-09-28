@@ -25,15 +25,9 @@ This extension has no extension settings.
 
 ## Release Notes
 
-Versions noted below.
+- Fixed "command 'jsontoelixir:convertWithOk' not found" error.
 
-### 0.0.2
-
-Added better replacing of `{` and `:` characters; they should not be replaced within doubel quoted strings now.
-
-### 0.0.1
-
-Initial release of JSON To Elixir for Alpha testers only. 09/27/2020.
+See past versions in change log.
 
 ## Source
 
