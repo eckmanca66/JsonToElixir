@@ -57,8 +57,8 @@ function convertToElixir(addOkTuple: boolean) {
     const text = document.getText();
 
     let newText = replaceAll(text, "null", "nil");
-    newText = replaceAll(newText, '": ', '" => ');
-    newText = replaceAll(newText, "{", "%{");
+    newText = replaceCharAll(newText, ":", "=>", true);
+    newText = replaceCharAll(newText, "{", "%{", false);
 
     if (addOkTuple) {
       newText = "{:ok,\n" + newText + "\n}";
@@ -72,6 +72,61 @@ function convertToElixir(addOkTuple: boolean) {
 function replaceAll(str: string, find: string, replaceWith: string) {
   // TODO: Crude replacement for now, use regular expressions to unsure not replacing within strings
   return str.replace(new RegExp(find, "g"), replaceWith);
+}
+
+function replaceCharAll(
+  str: string,
+  find: string,
+  replaceWith: string,
+  checkSpacing: boolean
+) {
+  let inQuotes = false;
+  let newStr = "";
+  let prevChar = "";
+
+  for (let index = 0; index < str.length; index++) {
+    let newChars = "";
+    let peekNextChar = "";
+
+    const thisChar = str[index];
+
+    if (index < str.length - 1) {
+      peekNextChar = str[index + 1];
+    }
+
+    if (thisChar === '"') {
+      if (inQuotes) {
+        if (prevChar !== "\\") {
+          inQuotes = false;
+        }
+      } else {
+        inQuotes = true;
+      }
+
+      newChars = thisChar;
+    } else if (!inQuotes && thisChar === find) {
+      if (checkSpacing) {
+        if (prevChar !== " ") {
+          newChars = " ";
+        }
+
+        newChars += replaceWith;
+
+        if (peekNextChar !== " ") {
+          newChars += " ";
+        }
+      } else {
+        newChars = replaceWith;
+      }
+    } else {
+      newChars = thisChar;
+    }
+
+    prevChar = thisChar;
+    newStr += newChars;
+  }
+
+  return newStr;
 }
 
 // this method is called when your extension is deactivated
