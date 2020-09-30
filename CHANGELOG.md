@@ -2,6 +2,10 @@
 
 All notable changes to the "jsontoelixir" extension will be documented in this file.
 
+## [0.0.4] - 09/30/2020
+
+- No code changes, just trying to get code from 0.0.3 to marketplace.
+
 ## [0.0.3] - 09/28/2020
 
 - Fixed error "command 'jsontoelixir:convertWithOk' not found".
